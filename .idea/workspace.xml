@@ -2,77 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01de5a75-4352-4662-884f-afc9a10a3c8d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/favicon.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.bowerrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LICENSE.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Vagrantfile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/AppAsset.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/codeception.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/commands/HelloController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/console.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/db.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/params.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/test_db.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/web.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/SiteController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docker-compose.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mail/layouts/html.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/ContactForm.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/LoginForm.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/User.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/requirements.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runtime/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/_bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/_data/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/_output/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/_support/AcceptanceTester.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/_support/FunctionalTester.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/_support/UnitTester.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance.suite.yml.example" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/AboutCest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/ContactCest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/HomeCest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/LoginCest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/acceptance/_bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/bin/yii" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/bin/yii.bat" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/functional.suite.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/functional/ContactFormCest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/functional/LoginFormCest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/functional/_bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit.suite.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/_bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/models/ContactFormTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/models/LoginFormTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/unit/models/UserTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vagrant/config/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vagrant/config/vagrant-local.example.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vagrant/nginx/app.conf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vagrant/nginx/log/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vagrant/provision/always-as-root.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vagrant/provision/once-as-root.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vagrant/provision/once-as-vagrant.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/layouts/main.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/site/about.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/site/contact.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/site/error.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/site/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/site/login.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/assets/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/site.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/index-test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/robots.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/widgets/Alert.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yii" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yii.bat" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -82,8 +11,45 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="@localhost" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="yii2" type="e3449647:DbNodeDescriptor" />
+      </path>
+      <path>
+        <item name="" type="eadb38e5:DatabaseStructure$Root" />
+        <item name="@localhost" type="e3449647:DbNodeDescriptor" />
+        <item name="yii2" type="e3449647:DbNodeDescriptor" />
+        <item name="order" type="e3449647:DbNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/models/Order.php" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -123,6 +89,32 @@
               <item name="yii2_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="yii2_project" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="yii2_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2_project" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="yii2_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2_project" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="yii2_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2_project" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="yii2_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2_project" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="yii2_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yii2_project" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="order" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -132,6 +124,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -156,7 +149,7 @@
       <option name="presentableId" value="Default" />
       <updated>1529751753356</updated>
       <workItem from="1529755127801" duration="291000" />
-      <workItem from="1529756541491" duration="191000" />
+      <workItem from="1529756541491" duration="3127000" />
     </task>
     <task id="LOCAL-00001" summary="Create new project with yii2 framework">
       <created>1529755405788</created>
@@ -165,21 +158,28 @@
       <option name="project" value="LOCAL" />
       <updated>1529755405788</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Create new project with yii2 framework">
+      <created>1529756797587</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1529756797587</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="482000" />
+    <option name="totallyTimeSpent" value="3418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2540453" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2540453" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -232,5 +232,118 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/269ab995-4bb6-43d8-877b-c567e19464d2/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-560">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/console.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/params.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yii">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vagrant/nginx/app.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/Validator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="55" column="6" lean-forward="false" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/EmailValidator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1764">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/RegularExpressionValidator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-492">
+          <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/order/view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-459">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/d79dc3f8/269ab995-4bb6-43d8-877b-c567e19464d2/yii2.order">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="35" column="97" lean-forward="false" selection-start-line="35" selection-start-column="97" selection-end-line="35" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
