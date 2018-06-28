@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -124,5 +126,30 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /*
+ * Подтверждение подписки.
+ * В качестве GET-параметра принимается код, который сравнивается с тем, что в таблице subscription
+ * в ячейке activation. При успехе - ставится true в ячейку status.
+ */
+    public function actionActivation(){
+        $code = Yii::$app->request->get('access_token');
+        $code = Html::encode($code);
+        //ищем код подтверждения в БД
+        $find = \app\models\User::find()->where(['access_token'=>$code])->one();
+        if($find){
+            $find->confirm = 1;
+            if ($find->save()) {
+                $text = '<p>Поздравляю!</p>
+            <p>Ваш e-mail подтвержден.</p>';
+                //страница подтверждения
+
+//                Yii::$app->response->refresh();
+                return $this->redirect(Url::home(true));
+            }
+        }
+        $absoluteHomeUrl = Url::home(true);
+        return $this->redirect($absoluteHomeUrl, 303); //на главную
     }
 }

@@ -66,9 +66,30 @@ class UserController extends Controller
     {
         $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        /*if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
+        }*/
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+            $model->generateAuthKey();
+
+            if ($model->save()){
+                $model->sendActivationToEmail();
+                Yii::$app->response->refresh(); //очистка данных из формы
+                echo "<p style='color:green'>На Ваш e-mail отправлено письмо со ссылкой.<br><br>"
+                    . "Перейдите по ней для активации подписки!</p>";
+                exit;
+            }
+        } else {
+            echo "<p style='color:red'>Ошибка оформления подписки.</p>";
+            //Проверяем наличие фразы в массиве ошибки
+            if( isset($model->errors['email']) && strpos($model->errors['email'][0], 'уже занято') !== false) {
+                echo "<p style='color:red'>Вы уже подписаны!</p>";
+            }
         }
+//        return $this->redirect(['view', 'id' => $model->id]);
+
 
         return $this->render('create', [
             'model' => $model,
