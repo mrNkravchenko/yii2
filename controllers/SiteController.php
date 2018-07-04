@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
@@ -130,26 +131,31 @@ class SiteController extends Controller
 
     /*
  * Подтверждение подписки.
- * В качестве GET-параметра принимается код, который сравнивается с тем, что в таблице subscription
- * в ячейке activation. При успехе - ставится true в ячейку status.
+ * В качестве GET-параметра принимается код, который сравнивается с тем, что в таблице user
+ * в ячейке access_token. При успехе - ставится true в ячейку confirm.
  */
+//    TODO разобраться почему, при активации пользователя пароль становиться друним.
     public function actionActivation(){
         $code = Yii::$app->request->get('access_token');
         $code = Html::encode($code);
         //ищем код подтверждения в БД
-        $find = \app\models\User::find()->where(['access_token'=>$code])->one();
+// TODO сделать через имеющиеся методы модели
+        $find = User::findIdentityByAccessToken($code);
+
+        var_dump($find);
+
         if($find){
-            $find->confirm = 1;
+//            $find->confirm = 1;
             if ($find->save()) {
                 $text = '<p>Поздравляю!</p>
             <p>Ваш e-mail подтвержден.</p>';
                 //страница подтверждения
 
 //                Yii::$app->response->refresh();
-                return $this->redirect(Url::home(true));
+//                return $this->redirect(Url::home(true));
             }
         }
         $absoluteHomeUrl = Url::home(true);
-        return $this->redirect($absoluteHomeUrl, 303); //на главную
+//        return $this->redirect($absoluteHomeUrl, 303); //на главную
     }
 }

@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Good;
-use app\models\GoodSearch;
+use app\models\Access;
+use app\models\search\AccessSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GoodController implements the CRUD actions for Good model.
+ * AccessController implements the CRUD actions for Access model.
  */
-class GoodController extends Controller
+class AccessController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class GoodController extends Controller
     }
 
     /**
-     * Lists all Good models.
+     * Lists all Access models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new GoodSearch();
+        $searchModel = new AccessSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class GoodController extends Controller
     }
 
     /**
-     * Displays a single Good model.
+     * Displays a single Access model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class GoodController extends Controller
     }
 
     /**
-     * Creates a new Good model.
+     * Creates a new Access model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Good();
+        $model = new Access();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class GoodController extends Controller
     }
 
     /**
-     * Updates an existing Good model.
+     * Updates an existing Access model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class GoodController extends Controller
     }
 
     /**
-     * Deletes an existing Good model.
+     * Deletes an existing Access model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class GoodController extends Controller
     }
 
     /**
-     * Finds the Good model based on its primary key value.
+     * Finds the Access model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Good the loaded model
+     * @return Access the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Good::findOne($id)) !== null) {
+        if (($model = Access::findOne($id)) !== null) {
             return $model;
         }
 

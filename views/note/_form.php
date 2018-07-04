@@ -4,21 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Good */
+/* @var $model app\models\Note */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="good-form">
+<div class="note-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'count')->textInput() ?>
-
-    <?= $form->field($model, 'email_provider')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'provider_id')->textInput() ?>
+    <?= $form->field($model, 'creator')->textInput() ?>
 
     <?= $form->field($model, 'date_create')->textInput() ?>
 

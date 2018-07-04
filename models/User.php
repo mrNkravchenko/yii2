@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use yii\helpers\Html;
+
 use yii\helpers\Url;
 
 /**
@@ -76,6 +76,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 $this->salt = $this->saltGenerator();
             }
             if (!empty($this->password)) {
+
+                var_dump($this->password, $this->salt, md5($this->password . $this->salt));
+
                 $this->password = $this->passWithSalt($this->password, $this->salt);
             } else {
                 unset($this->password);
@@ -92,7 +95,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function saltGenerator()
     {
-        return hash("sha512", uniqid('salt_', true));
+        return md5($this->username);
     }
 
     /**
@@ -103,7 +106,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function passWithSalt($password, $salt)
     {
-        return hash("sha512", $password . $salt);
+        return md5($password . $salt);
     }
 
     /**
@@ -165,6 +168,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
+//        var_dump($this->passWithSalt($password, $this->salt));
         return $this->password === $this->passWithSalt($password, $this->salt);
     }
 
@@ -183,7 +187,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->access_token = Yii::$app->security->generateRandomString();
+        try {
+            $this->access_token = Yii::$app->security->generateRandomString();
+        } catch (\Exception $exception) {
+            Yii::warning($exception . Yii::t('app', "Mistake"));
+        }
+
     }
     public function sendActivationToEmail()
     {
@@ -224,7 +233,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             ->all();
 
         foreach($oldSub as $sub){
-            $sub->delete();
+            try {
+                $sub->delete();
+            } catch (\Exception $exception) {
+                Yii::warning($exception. Yii::t('app', 'Mistake'));
+            }
         }
     }
 }

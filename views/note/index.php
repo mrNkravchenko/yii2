@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\GoodSearch */
+/* @var $searchModel app\models\search\NoteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Goods';
+$this->title = 'Notes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="good-index">
+<div class="note-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Good', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Note', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,11 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
-            'count',
-            'email_provider:email',
-            'provider_id',
-            //'date_create',
+            'text:ntext',
+            'creator',
+            'date_create',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

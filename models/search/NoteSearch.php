@@ -1,16 +1,16 @@
 <?php
 
-namespace app\models;
+namespace app\models\search;
 
-use Yii;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Good;
+use app\models\Note;
 
 /**
- * GoodSearch represents the model behind the search form of `app\models\Good`.
+ * NoteSearch represents the model behind the search form of `app\models\Note`.
  */
-class GoodSearch extends Good
+class NoteSearch extends Note
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class GoodSearch extends Good
     public function rules()
     {
         return [
-            [['id', 'count', 'provider_id'], 'integer'],
-            [['name', 'email_provider', 'date_create'], 'safe'],
+            [['id', 'creator'], 'integer'],
+            [['text', 'date_create'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class GoodSearch extends Good
      */
     public function search($params)
     {
-        $query = Good::find();
+        $query = Note::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,11 @@ class GoodSearch extends Good
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'count' => $this->count,
-            'provider_id' => $this->provider_id,
+            'creator' => $this->creator,
             'date_create' => $this->date_create,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'email_provider', $this->email_provider]);
+        $query->andFilterWhere(['like', 'text', $this->text]);
 
         return $dataProvider;
     }

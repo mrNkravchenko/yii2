@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'username')->input('email') ?>
 
     <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
 
@@ -20,11 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?/*= $form->field($model, 'salt')->textInput(['maxlength' => true]) */?><!--
 
-    <?/*= $form->field($model, 'access_token')->textInput(['maxlength' => true]) */?>
-
-    --><?/*= $form->field($model, 'create_date')->textInput() */?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
