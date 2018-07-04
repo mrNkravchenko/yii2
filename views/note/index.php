@@ -19,18 +19,27 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Note', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            [
+                'class' => 'yii\grid\SerialColumn',
+            ],
             'id',
             'text:ntext',
-            'creator',
+            'author.name',
             'date_create',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'update' => function ($url, Note $model) {
+                        return (new CheckNoteAccess)->execute($model) === Access::LEVEL_EDIT ? Html::a('Update', $url) : '';
+                    },
+                ],
+            ],
         ],
     ]); ?>
+
 </div>

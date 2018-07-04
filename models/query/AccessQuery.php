@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models\query;
+use app\models\Note;
 
 /**
  * This is the ActiveQuery class for [[\app\models\Access]].
@@ -30,5 +31,26 @@ class AccessQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    /**
+     * @param Note $note
+     *
+     * @return self
+     */
+    public function forNote(Note $note)
+    {
+        $this->andWhere(['note_id' => $note->id]);
+        return $this;
+    }
+    /**
+     * @param int $userId
+     *
+     * @return self
+     */
+    public function forUserId($userId)
+    {
+        $this->andWhere(['user_id' => $userId]);
+        return $this;
     }
 }
