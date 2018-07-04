@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Note;
 use app\models\search\NoteSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +21,17 @@ class NoteController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['my', 'create', 'update', 'delete', 'shared'],
+//				'except' => ['shared'],
+                'rules' => [
+                    [
+                        'roles' => ['@'],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -27,6 +39,43 @@ class NoteController extends Controller
                 ],
             ],
         ];
+    }
+
+
+    /**
+     * @return string
+     */
+    public function actionMy()
+    {
+        $searchModel = new NoteSearch();
+        $dataProvider = $searchModel->search(
+            [
+                'NoteSearch' => [
+                    'creator' => \Yii::$app->user->id,
+                ],
+            ]
+        );
+        return $this->render(
+            'index',
+            [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]
+        );
+    }
+
+
+    /**
+     * @return string
+     */
+    public function actionShared()
+    {
+        $searchModel = new NoteSearch();
+        $dataProvider = $searchModel->search(['user_id' => \Yii::$app->user->id]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
