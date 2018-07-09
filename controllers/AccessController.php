@@ -118,7 +118,15 @@ class AccessController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Access::findOne($id)) !== null) {
+        /*if (($model = Access::findOne($id)) !== null) {
+            return $model;
+        }*/
+
+        if ($model = Access::find()
+
+        ->andWhere(['id' => $id])
+        ->cache(20)
+        ->one() !== null) {
             return $model;
         }
 

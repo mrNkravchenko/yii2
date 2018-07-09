@@ -29,7 +29,7 @@ class Note extends \yii\db\ActiveRecord
     {
         return [
             [['text', 'creator'], 'required'],
-            [['text'], 'string'],
+            [['text', 'date_create'], 'string'],
             [['creator'], 'integer'],
             [['date_create'], 'safe'],
         ];
@@ -59,24 +59,35 @@ class Note extends \yii\db\ActiveRecord
 
     public function beforeSave($insert)
     {
+
         $result = parent::beforeSave($insert);
         if (!$this->creator) {
             $this->creator = \Yii::$app->user->id;
         }
         if (!$this->date_create) {
-            $this->date_create = \date('Y-m-d H:i:s');
+//            var_dump('nen');
+            $this->date_create = \date('Y-m-d');
         }
+
+
+
         return $result;
     }
 
-    public function getAutor()
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthor()
     {
-        return $this->hasOne(User::className(), ['id' => 'creator']);
+        return $this->hasOne(User::class, ['id' => 'creator']);
 
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getAccess()
     {
-        return $this->hasMany(Access::className(), ['note_id' => 'id']);
+        return $this->hasMany(Access::class, ['note_id' => 'id']);
     }
 }

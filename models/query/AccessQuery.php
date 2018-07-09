@@ -53,4 +53,8 @@ class AccessQuery extends \yii\db\ActiveQuery
         $this->andWhere(['user_id' => $userId]);
         return $this;
     }
+    public function forDateIvent(Note $note)
+    {
+        $this->andWhere(['date_create' > \date('Y-m-d H:i:s')]);
+    }
 }

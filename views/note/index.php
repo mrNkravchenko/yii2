@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\search\NoteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Notes';
+$this->title = 'Заметки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="note-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Note', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать заметку', \yii\helpers\Url::to(['note/create']), ['class' => 'btn btn-success']) ?>
     </p>
 
 
@@ -34,8 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
-                    'update' => function ($url, Note $model) {
-                        return (new CheckNoteAccess)->execute($model) === Access::LEVEL_EDIT ? Html::a('Update', $url) : '';
+                    'update' => function ($url, \app\models\Note $model) {
+                        return (new \app\objects\CheckNoteAccess())->execute($model) === \app\models\Access::LEVEL_EDIT ? Html::a('Обновить', $url) : '';
+                    },
+                    'delete' => function ($url, \app\models\Note $model) {
+                        return (new \app\objects\CheckNoteAccess())->execute($model) === \app\models\Access::LEVEL_EDIT ? Html::a('Удалить', $url) : '';
                     },
                 ],
             ],

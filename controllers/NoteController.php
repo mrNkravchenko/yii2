@@ -23,8 +23,8 @@ class NoteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['my', 'create', 'update', 'delete', 'shared'],
-//				'except' => ['shared'],
+//                'only' => ['my', 'create', 'update', 'delete', 'shared'],
+				'except' => ['shared'],
                 'rules' => [
                     [
                         'roles' => ['@'],
@@ -33,7 +33,7 @@ class NoteController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -115,7 +115,10 @@ class NoteController extends Controller
     {
         $model = new Note();
 
+
+        var_dump($model->getErrors(), $model->load(Yii::$app->request->post()), $model->save(false));
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -153,7 +156,11 @@ class NoteController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        try {
+            $this->findModel($id)->delete();
+        } catch (\Exception $exception) {
+            Yii::warning($exception, Yii::t('app', 'Mistake'));
+        }
 
         return $this->redirect(['index']);
     }

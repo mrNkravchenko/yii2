@@ -11,13 +11,20 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+//    'language' => 'ru-RU',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '92W1Zbtr-8f4GjMhp2_hi4BGD68KZC6N',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+//            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\redis\Cache',
+            'redis' => [
+                  'hostname' => 'localhost',
+                  'port' => 6379,
+                  'database' => 0,
+            ]
         ],
         'user' => [
             'identityClass' => 'app\models\User',
