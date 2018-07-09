@@ -1,93 +1,83 @@
 <?php
 
 namespace app\models;
-
-use Yii;
-
+use app\models\query\NoteQuery;
+use yii\db\ActiveQuery;
 /**
- * This is the model class for table "evrnt_note".
+ * This is the model class for table "note".
  *
  * @property int $id
  * @property string $text
  * @property int $creator
  * @property string $date_create
+ *
+ * @property User $author
+ * @property Access[] $access
  */
 class Note extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'evrnt_note';
     }
-
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['text', 'creator'], 'required'],
-            [['text', 'date_create'], 'string'],
+            [['text'], 'required'],
+            [['text'], 'string'],
             [['creator'], 'integer'],
             [['date_create'], 'safe'],
         ];
     }
-
     /**
      * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'text' => Yii::t('app', 'Text'),
-            'creator' => Yii::t('app', 'Creator'),
-            'date_create' => Yii::t('app', 'Date Create'),
+            'id' => 'ID',
+            'text' => 'Text',
+            'creator' => 'Creator',
+            'date_create' => 'Date Create',
         ];
     }
-
     /**
      * {@inheritdoc}
      * @return \app\models\query\NoteQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): NoteQuery
     {
-        return new \app\models\query\NoteQuery(get_called_class());
+        return new NoteQuery(__CLASS__);
     }
-
+    /**
+     * @return ActiveQuery
+     */
+    public function getAuthor(): ActiveQuery
+    {
+        return $this->hasOne(User::class, ['id' => 'creator']);
+    }
+    /**
+     * @return ActiveQuery
+     */
+    public function getAccess(): ActiveQuery
+    {
+        return $this->hasMany(Access::class, ['note_id' => 'id']);
+    }
     public function beforeSave($insert)
     {
-
         $result = parent::beforeSave($insert);
         if (!$this->creator) {
             $this->creator = \Yii::$app->user->id;
         }
         if (!$this->date_create) {
-//            var_dump('nen');
-            $this->date_create = \date('Y-m-d');
+            $this->date_create = \date('Y-m-d H:i:s');
         }
-
-
-
         return $result;
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAuthor()
-    {
-        return $this->hasOne(User::class, ['id' => 'creator']);
-
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAccess()
-    {
-        return $this->hasMany(Access::class, ['note_id' => 'id']);
     }
 }

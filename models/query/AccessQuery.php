@@ -2,7 +2,6 @@
 
 namespace app\models\query;
 use app\models\Note;
-
 /**
  * This is the ActiveQuery class for [[\app\models\Access]].
  *
@@ -14,7 +13,6 @@ class AccessQuery extends \yii\db\ActiveQuery
     {
         return $this->andWhere('[[status]]=1');
     }*/
-
     /**
      * {@inheritdoc}
      * @return \app\models\Access[]|array
@@ -23,7 +21,6 @@ class AccessQuery extends \yii\db\ActiveQuery
     {
         return parent::all($db);
     }
-
     /**
      * {@inheritdoc}
      * @return \app\models\Access|array|null
@@ -32,7 +29,6 @@ class AccessQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
-
     /**
      * @param Note $note
      *
@@ -48,13 +44,22 @@ class AccessQuery extends \yii\db\ActiveQuery
      *
      * @return self
      */
-    public function forUserId($userId)
+    public function forUserId(int $userId)
     {
         $this->andWhere(['user_id' => $userId]);
         return $this;
     }
-    public function forDateIvent(Note $note)
+    /**
+     * @return self
+     */
+    public function forCurrentDate()
     {
-        $this->andWhere(['date_create' > \date('Y-m-d H:i:s')]);
+        $date = date('Y-m-d');
+        $this->andWhere([
+            'or',
+            ['<=', 'since', $date],
+            ['since' => null],
+        ]);
+        return $this;
     }
 }

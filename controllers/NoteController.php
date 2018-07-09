@@ -116,7 +116,7 @@ class NoteController extends Controller
         $model = new Note();
 
 
-        var_dump($model->getErrors(), $model->load(Yii::$app->request->post()), $model->save(false));
+//        var_dump($model->getErrors(), $model->load(Yii::$app->request->post()), $model->save(false));
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
             return $this->redirect(['view', 'id' => $model->id]);
