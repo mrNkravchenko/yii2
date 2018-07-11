@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -9,8 +10,10 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
+Yii::$app->name = Yii::t('app', 'My Notes');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,37 +27,57 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
+
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">
     <?php
+
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Статьи', 'url' => ['/note/index']],
-            ['label' => 'Контакты', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Вход', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Выход (' . Yii::$app->user->identity->name . ')',
-                    ['class' => 'btn btn-link logout']
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => [
+                ['label' => Yii::t('app', 'Main'), 'url' => Url::to(['/'])],
+
+                ['label' => Yii::t('app', 'Notes'),
+
+                    'itemsOptions' => ['class' => 'dropdown-submenu'],
+                    'submenuOptions' => ['class' => 'dropdown-menu'],
+
+                    'items' =>
+                        [
+                            'label' => Yii::t('app', 'My Notes'), 'url' => Url::to(['note/my']),
+
+                            'label' => Yii::t('app', 'All Notes'), 'url' => Url::to(['note/index']),
+
+                            'label' => Yii::t('app', 'Shared Notes'), 'url' => Url::to(['note/shared']),
+                        ],
+
+                ],
+
+                ['label' => Yii::t('app', 'Contacts'), 'url' => ['/site/contact']],
+
+                Yii::$app->user->isGuest ? (
+                ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
+                ) : (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post')
+                    . Html::submitButton(
+                        Yii::t('app', 'Logout'). '(' . Yii::$app->user->identity->name . ')',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
                 )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
+            ]]
+    );
     NavBar::end();
     ?>
 
