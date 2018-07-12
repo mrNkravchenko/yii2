@@ -16,5 +16,6 @@ return [
     'Contacts' => 'Контакты',
     'Login' => 'Войти',
     'Logout' => 'Выйти',
+    'My Aplication' => 'Мое приложение',
 
 ];

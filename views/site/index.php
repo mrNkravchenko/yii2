@@ -2,12 +2,12 @@
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::$app->name;
+$this->title = Yii::t('app', Yii::$app->name);
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1><?=Yii::$app->name?></h1>
+        <h1><?=Yii::t('app', Yii::$app->name)?></h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 

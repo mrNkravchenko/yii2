@@ -53,11 +53,11 @@ Yii::$app->name = Yii::t('app', 'My Notes');
 
                     'items' =>
                         [
-                            'label' => Yii::t('app', 'My Notes'), 'url' => Url::to(['note/my']),
+                            ['label' => Yii::t('app', 'My Notes'), 'url' => Url::to(['note/my'])],
 
-                            'label' => Yii::t('app', 'All Notes'), 'url' => Url::to(['note/index']),
+                            ['label' => Yii::t('app', 'All Notes'), 'url' => Url::to(['note/index'])],
 
-                            'label' => Yii::t('app', 'Shared Notes'), 'url' => Url::to(['note/shared']),
+                            ['label' => Yii::t('app', 'Shared Notes'), 'url' => Url::to(['note/shared'])],
                         ],
 
                 ],
