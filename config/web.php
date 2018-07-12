@@ -75,10 +75,11 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
 //                    'basePath' => '@app/messages',
 //                    'sourceLanguage' => 'en-US',
-//                    'fileMap' => [
+                    'fileMap' => [
 //                        'app'       => 'app.php',
 //                        'app/error' => 'error.php',
-//                    ],
+                        'app/site' => 'site.php',
+                    ],
                 ],
             ],
         ],

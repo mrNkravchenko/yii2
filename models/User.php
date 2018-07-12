@@ -52,11 +52,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Ваш логин / email адрес',
-            'surname' => 'Фамилия',
-            'name' => 'Имя',
-            'password' => 'Пароль',
+            'id' => Yii::t('app', 'ID'),
+            'username' => Yii::t('app', 'Your Login / email address'),
+            'surname' => Yii::t('app', 'Your surname'),
+            'name' => Yii::t('app', 'Your name'),
+            'password' => Yii::t('app', 'Your password'),
             'salt' => 'Salt',
             'access_token' => 'Access Token',
             'create_date' => 'Create Date',
@@ -77,7 +77,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             }
             if (!empty($this->password)) {
 
-                var_dump($this->password, $this->salt, md5($this->password . $this->salt));
+//                var_dump($this->password, $this->salt, md5($this->password . $this->salt));
 
                 $this->password = $this->passWithSalt($this->password, $this->salt);
             } else {

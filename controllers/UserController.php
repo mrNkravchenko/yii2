@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\Access;
+use app\models\search\UserSearch;
 use Yii;
 use app\models\User;
-use app\models\UserSearch;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,10 +40,17 @@ class UserController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        if (Yii::$app->user->id === User::find()->where(['username' => 'mrnkravchenko@gmail.com'])) {
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+
+
+        } else return $this->goHome();
+
+
     }
 
     /**
@@ -52,6 +61,7 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+//        TODO Доделать - закрыть доступ к просмотру, обновлению и редактированию пользователей, кроме Админа
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -80,12 +90,12 @@ class UserController extends Controller
                 echo "<p style='color:green'>На Ваш e-mail отправлено письмо со ссылкой.<br><br>"
                     . "Перейдите по ней для активации подписки!</p>";
                 exit;
-            }
+            } else echo "<p style='color:red'>". Yii::t('app/site', 'Your registration is not completed, an error occurred') . "</p>";
         } else {
-            echo "<p style='color:red'>Ошибка оформления подписки.</p>";
+
             //Проверяем наличие фразы в массиве ошибки
             if( isset($model->errors['email']) && strpos($model->errors['email'][0], 'уже занято') !== false) {
-                echo "<p style='color:red'>Вы уже подписаны!</p>";
+                echo "<p style='color:red'>" . Yii::t('app/site', 'You already have an account!') . "</p>";
             }
         }
 //        return $this->redirect(['view', 'id' => $model->id]);

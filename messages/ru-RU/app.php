@@ -17,5 +17,14 @@ return [
     'Login' => 'Войти',
     'Logout' => 'Выйти',
     'My Aplication' => 'Мое приложение',
+    'Your Login / email address' => 'Ваш логин / email адрес',
+    'Your surname' => 'Ваша фамилия',
+    'Your name' => 'Ваше имя',
+    'Your password' => 'Ваш пароль',
+    'Remember me' => 'Запомнить меня',
+    'Sign up' => 'Регистрация',
+    'Users' => 'Пользователи',
+    'Create User' => 'Регистрация пользователя',
+    'Save' => 'Отправить',
 
 ];
