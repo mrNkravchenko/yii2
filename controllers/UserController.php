@@ -40,7 +40,7 @@ class UserController extends Controller
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if (Yii::$app->user->id === User::find()->where(['username' => 'mrnkravchenko@gmail.com'])) {
+        if (Yii::$app->user->id === User::find()->where(['username' => 'mrnkravchenko@gmail.com'])->one()->id) {
 
             return $this->render('index', [
                 'searchModel' => $searchModel,
