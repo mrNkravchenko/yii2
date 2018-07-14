@@ -1,0 +1,1 @@
+0 0 * * * php /home/nikita/projects/yii2/cron/prod.cron
