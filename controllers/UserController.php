@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Access;
+
 use app\models\search\UserSearch;
 use Yii;
 use app\models\User;

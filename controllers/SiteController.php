@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\query\UserLogQuery;
 use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
@@ -80,6 +81,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
             return $this->goBack();
         }
 
