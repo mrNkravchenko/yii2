@@ -1,13 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Note */
 
-$this->title = 'Создание заметки';
-$this->params['breadcrumbs'][] = ['label' => 'Заметки', 'url' => \yii\helpers\Url::to(['note/index'])];
+$this->title = Yii::t('app', 'Create Notes');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Notes'), 'url' => Url::to(['note/index'])];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="note-create">

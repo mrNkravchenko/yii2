@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models\query;
+use app\models\User;
 
 /**
  * This is the ActiveQuery class for [[\app\models\Note]].
@@ -31,4 +32,5 @@ class NoteQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
 }

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\search\NoteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Заметки';
+$this->title = Yii::t('app', 'Notes');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="note-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать заметку', \yii\helpers\Url::to(['note/create']), ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Notes'), \yii\helpers\Url::to(['note/create']), ['class' => 'btn btn-success']) ?>
     </p>
 
 

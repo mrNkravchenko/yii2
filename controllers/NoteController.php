@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use function var_dump;
 use Yii;
 use app\models\Note;
 use app\models\search\NoteSearch;
@@ -114,6 +115,7 @@ class NoteController extends Controller
     public function actionCreate()
     {
         $model = new Note();
+
 
 
 //        var_dump($model->getErrors(), $model->load(Yii::$app->request->post()), $model->save(false));
