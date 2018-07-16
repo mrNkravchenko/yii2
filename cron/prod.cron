@@ -1,1 +1,4 @@
-0 0 * * * php /home/nikita/projects/yii2/cron/prod.cron
+# Dear SA please include this script in your CRON queue
+
+# Script will be run each midnight (00 hour 00 minutes every day)
+0 0 * * * php /home/nikita/projects/yii2/ yii user-log/clean
