@@ -1,7 +1,10 @@
 <?php
 
+use app\models\Access;
+use app\objects\CheckNoteAccess;
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\NoteSearch */
@@ -13,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="note-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Notes'), \yii\helpers\Url::to(['note/create']), ['class' => 'btn btn-success']) ?>
@@ -25,24 +27,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             [
-                'class' => 'yii\grid\SerialColumn',
+                'class' => \yii\grid\SerialColumn::class,
             ],
-            'id',
-            'text:ntext',
-            'author.name',
-            'date_create',
             [
-                'class' => 'yii\grid\ActionColumn',
-                'buttons' => [
-                    'update' => function ($url, \app\models\Note $model) {
-                        return (new \app\objects\CheckNoteAccess())->execute($model) === \app\models\Access::LEVEL_EDIT ? Html::a('Обновить', $url) : '';
+                'attribute' => 'text',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $text = StringHelper::truncateWords($model->text, 2, '...', true);
+                    return Html::a($text, ['note/view', 'id' => $model->id]);
+                }
+            ],
+            'author.name',
+            [
+                'attribute' => 'date_create',
+                'format' => ['date', 'php:d.m.Y H:i'],
+            ],
+            [
+                'class' => \yii\grid\ActionColumn::class,
+                'visibleButtons' => [
+                    'update' => function ($model) {
+                        return (new CheckNoteAccess())->execute($model) === Access::LEVEL_EDIT;
                     },
-                    'delete' => function ($url, \app\models\Note $model) {
-                        return (new \app\objects\CheckNoteAccess())->execute($model) === \app\models\Access::LEVEL_EDIT ? Html::a('Удалить', $url) : '';
-                    },
+                    'delete' => function ($model) {
+                        return (new CheckNoteAccess())->execute($model) === Access::LEVEL_EDIT;
+                    }
                 ],
             ],
         ],
+
+
     ]); ?>
 
 </div>

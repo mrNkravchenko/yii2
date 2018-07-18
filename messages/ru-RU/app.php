@@ -22,7 +22,7 @@ return [
     'My Aplication' => 'Мое приложение',
     'Your Login / email address' => 'Ваш логин / email адрес',
     'Your surname' => 'Ваша фамилия',
-    'Your name' => 'Ваше имя',
+    'Your name' => 'Имя',
     'Your password' => 'Ваш пароль',
     'Remember me' => 'Запомнить меня',
     'Sign up' => 'Регистрация',
@@ -32,6 +32,10 @@ return [
     'User ID' => 'ID Пользователя',
     'Login Date' => 'Время входа',
     'Update' => 'Обновить',
+    'Text' => 'Текст',
+    'Creator' => 'Автор',
+    'Date Create' => 'Дата создания',
+    'Delete' => 'Удалить',
 
 
 ];

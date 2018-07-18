@@ -2,6 +2,7 @@
 
 namespace app\models;
 use app\models\query\NoteQuery;
+use Yii;
 use yii\db\ActiveQuery;
 /**
  * This is the model class for table "note".
@@ -42,9 +43,9 @@ class Note extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'text' => 'Text',
-            'creator' => 'Creator',
-            'date_create' => 'Date Create',
+            'text' => Yii::t('app', 'Text'),
+            'creator' => Yii::t('app', 'Creator'),
+            'date_create' => Yii::t('app', 'Date Create'),
         ];
     }
     /**
@@ -53,6 +54,7 @@ class Note extends \yii\db\ActiveRecord
      */
     public static function find(): NoteQuery
     {
+
         return new NoteQuery(__CLASS__);
     }
     /**

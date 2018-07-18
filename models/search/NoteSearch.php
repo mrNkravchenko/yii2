@@ -63,6 +63,7 @@ class NoteSearch extends Note
             'creator' => $this->creator,
             'date_create' => $this->date_create,
         ]);
+        $query->joinWith('access');
 
         $query->andFilterWhere(['like', 'text', $this->text]);
 
