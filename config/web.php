@@ -5,6 +5,8 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
 //    'name' => 'Мои Заметки',
+
+
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -86,6 +88,7 @@ $config = [
 
     ],
     'params' => $params,
+
 ];
 
 if (YII_ENV_DEV) {

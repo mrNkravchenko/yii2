@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
-use app\models\query\UserLogQuery;
+
+use app\models\UrlShorneter;
 use app\models\User;
+use function var_dump;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
@@ -65,7 +67,34 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+//        TODO сделать редирект по ссылке и сделать апи
+
+        if (Yii::$app->user->isGuest) {
+
+            return $this->redirect(Url::to('site/login'));
+        }
+
+        $model = new UrlShorneter();
+        $result = '';
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->save()) {
+                $link = $_SERVER['HTTP_ORIGIN'] . '/' . $model->url_short;
+                $result = Html::a($link, Url::to($link, true));
+            } else {
+                $result = '';
+                $errors = $model->getErrors('url_origin');
+                foreach ($errors as $key => $error){
+                    $result .= $error . ' ';
+                }
+
+            }
+        }
+
+
+        return $this->render('index', ['model' => $model, 'result' => $result]);
     }
 
     /**
@@ -137,16 +166,15 @@ class SiteController extends Controller
  * в ячейке access_token. При успехе - ставится true в ячейку confirm.
  */
 //    TODO разобраться почему, при активации пользователя пароль становиться друним.
-    public function actionActivation(){
+    public function actionActivation()
+    {
         $code = Yii::$app->request->get('access_token');
         $code = Html::encode($code);
         //ищем код подтверждения в БД
 // TODO сделать через имеющиеся методы модели
         $find = User::findIdentityByAccessToken($code);
 
-        var_dump($find);
-
-        if($find){
+        if ($find) {
 //            $find->confirm = 1;
             if ($find->save()) {
                 $text = '<p>Поздравляю!</p>

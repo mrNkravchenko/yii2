@@ -8,6 +8,7 @@
 
 return [
     'Please fill out the following fields to login' => 'Пожалуйста, заполните следующие поля для входа',
+    'Please fill out the following fields' => 'Пожалуйста, заполните следующие поля',
     'Your registration is not completed, an error occurred' => 'Ошибка при регистрации пользователя',
     'You already have an account!' => 'Вы уже зарегистрированы!',
     'View Note' => 'Просмотр заметки',
