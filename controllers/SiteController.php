@@ -83,8 +83,10 @@ class SiteController extends Controller
             if ($model->save()) {
                 $link = $_SERVER['HTTP_ORIGIN'] . '/' . $model->url_short;
                 $result = Html::a($link, Url::to($link, true));
+                $model->refresh();
             } else {
                 $result = '';
+//                var_dump($model);exit;
                 $errors = $model->getErrors('url_origin');
                 foreach ($errors as $key => $error){
                     $result .= $error . ' ';

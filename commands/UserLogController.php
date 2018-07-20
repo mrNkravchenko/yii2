@@ -48,6 +48,7 @@ class UserLogController extends Controller
 
         Console::updateProgress($userLogsCount, $userLogsCount);
         Console::endProgress();
+
         return ExitCode::OK;
 
     }
