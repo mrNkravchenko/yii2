@@ -186,7 +186,7 @@ class UrlShortController extends Controller
             $model->save();
 //            var_dump($model, Url::base(true));exit;
             $this->redirect($model->url_origin);
-        }
+        } else $this->redirect(Url::base(true));
 
     }
 
