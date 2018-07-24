@@ -16,6 +16,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
+
 class SiteController extends Controller
 {
     /**
@@ -68,36 +69,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-//        TODO сделать редирект по ссылке и сделать апи
-
-        if (Yii::$app->user->isGuest) {
-
-            return $this->redirect(Url::to('site/login'));
-        }
-
-        $model = new UrlShorneter();
-        $result = '';
-
-        if ($model->load(Yii::$app->request->post())) {
-
-            if ($model->save()) {
-                $link = $_SERVER['HTTP_ORIGIN'] . '/' . $model->url_short;
-                $result = Html::a($link, Url::to($link, true));
-                $model->refresh();
-            } else {
-                $result = '';
-//                var_dump($model);exit;
-                $errors = $model->getErrors('url_origin');
-                foreach ($errors as $key => $error){
-                    $result .= $error . ' ';
-                }
-
-            }
-        }
-
-
-        return $this->render('index', ['model' => $model, 'result' => $result]);
+        return $this->render('index');
     }
+
 
     /**
      * Login action.

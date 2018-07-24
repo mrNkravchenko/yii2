@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */

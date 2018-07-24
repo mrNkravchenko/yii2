@@ -1,5 +1,7 @@
 <?php
 
+
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -67,19 +69,22 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+
                 '' => 'site/index',
-                '<action>'=>'site/<action>',
+                'contact' => 'site/contact',
+                'login' => 'site/login',
+                'logout' => 'site/logout',
+
+                '<code:\w+>' => 'url-short/redirect',
+
+
             ],
         ],
         'i18n' => [
             'translations' => [
                 'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-//                    'basePath' => '@app/messages',
-//                    'sourceLanguage' => 'en-US',
                     'fileMap' => [
-//                        'app'       => 'app.php',
-//                        'app/error' => 'error.php',
                         'app/site' => 'site.php',
                     ],
                 ],

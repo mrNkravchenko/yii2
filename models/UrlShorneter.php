@@ -25,6 +25,10 @@ use yii\helpers\Url;
 class UrlShorneter extends \yii\db\ActiveRecord
 {
 
+    public const LEVEL_DENIED = 0;
+    public const LEVEL_VIEW = 1;
+    public const LEVEL_EDIT = 2;
+
     /**
      * {@inheritdoc}
      */
@@ -118,7 +122,7 @@ class UrlShorneter extends \yii\db\ActiveRecord
 
         if (!empty($this->getErrors('url_origin'))) {
 
-            $link = $_SERVER['HTTP_ORIGIN'] . '/' . $this::findOne(['url_origin' => $this->url_origin])->url_short;
+            $link = Url::base(true) . '/' . $this::findOne(['url_origin' => $this->url_origin])->url_short;
 
             $this->addError('url_origin', 'Значения для поля: ' . $this::findOne(['url_origin' => $this->url_origin])->url_short . '.');
 
@@ -140,10 +144,12 @@ class UrlShorneter extends \yii\db\ActiveRecord
         }
 
 
-        if ($this->isAttributeChanged('url_short')) {
-
+        if ($this->isAttributeChanged('count_of_use')){
             $this->save();
+        }
 
+        if ($this->isAttributeChanged('url_short')) {
+            $this->save();
         }
         return false;
 
@@ -158,9 +164,9 @@ class UrlShorneter extends \yii\db\ActiveRecord
         $base = 10;
 
         // основанеи новое
-        $newBase = 32; //
+        $newBase = 36; //
 
-        //так как число для конвертации берется из primary key, то оно всегда будет уникально, поэтому используем простую функцию передода числа и не заморачиваемся:)
+        //так как число для конвертации берется из primary key, то оно всегда будет уникально, поэтому используем простую функцию перевода числа и не заморачиваемся, хотя можно мудрить с перемешиванием строки и тд.:)
         return base_convert(($id + 9999990), $base, $newBase);
 
     }

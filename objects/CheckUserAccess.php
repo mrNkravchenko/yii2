@@ -7,41 +7,39 @@
  */
 
 namespace app\objects;
+
+use app\models\Access;
 use app\models\User;
+use function var_dump;
 use Yii;
+use yii\base\Model;
 
 
 class CheckUserAccess
 {
 
-//    TODO Доделать контроль Юзеров к каким либо данным
 
     /**
-     * Уровень доступа к заметке
+     * Уровень доступа к моделям
      *
-     * @param Note $model
+     * @param Model $model
      *
      * @return int
      */
-    public function execute(Note $model): int
+    public static function execute(Model $model): int
     {
+        $adminEmail = Yii::$app->params['adminEmail'];
         $adminId = (int)User::find()->where(
-            ['username' => 'mrnkravchenko@gmail.com']
+            ['username' => $adminEmail]
         )->one()->id;
-        var_dump($adminId);exit;
+
         $userId = (int)Yii::$app->user->id;
-        if ($userId === $userId) {
-            return Access::LEVEL_EDIT;
-        }
-        $query = Access::find()
-            ->forNote($model)
-            ->forUserId($userId)
-            ->forCurrentDate();
-        $accessNote = $query->one();
-        if ($accessNote) {
-            return Access::LEVEL_VIEW;
-        }
-        return Access::LEVEL_DENIED;
+        if ($userId === $adminId) {
+            return $model::LEVEL_EDIT;
+        } else return $model::LEVEL_VIEW;
+
+
     }
+
 
 }

@@ -46,6 +46,8 @@ Yii::$app->name = Yii::t('app', 'My Notes');
             'items' => [
                 ['label' => Yii::t('app', 'Main'), 'url' => Url::to(['/'])],
 
+                ['label' => Yii::t('app', 'Url Short'), 'url' => Url::to(['url-short/create'])],
+
                 ['label' => Yii::t('app', 'Notes'),
 
                     'itemsOptions' => ['class' => 'dropdown-submenu'],

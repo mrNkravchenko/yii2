@@ -194,8 +194,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
 
     }
+
+
     public function sendActivationToEmail()
     {
+//        TODO Пееделать используя встроенный шаблон
         /*$email = Html::encode($this->username);
         $this->username = $email;*/
         $this->create_date = (string) date('Y-m-d');
@@ -223,6 +226,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
     //Удаление подписчиков, которые не подтвердили свой e-mail в течении 7-и дней.
+//    TODO переделать используя контроллер консоли
     public function deleteUsersWithoutActivation(){
         $today = time();
         $old_time = $today - (86400*7);
