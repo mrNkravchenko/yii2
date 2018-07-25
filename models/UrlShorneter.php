@@ -130,6 +130,13 @@ class UrlShorneter extends \yii\db\ActiveRecord
         }
     }
 
+
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     *
+     * @return bool|void
+     */
     public function afterSave($insert, $changedAttributes)
     {
 
@@ -146,16 +153,22 @@ class UrlShorneter extends \yii\db\ActiveRecord
 
         if ($this->isAttributeChanged('count_of_use')){
             $this->save();
+
         }
 
         if ($this->isAttributeChanged('url_short')) {
             $this->save();
         }
-        return false;
+
 
 
     }
 
+    /**
+     * @param $url_origin
+     *
+     * @return string
+     */
     public static function generateShortUrl($url_origin)
     {
         $id = static::findOne(['url_origin' => $url_origin])->id;
@@ -171,6 +184,11 @@ class UrlShorneter extends \yii\db\ActiveRecord
 
     }
 
+    /**
+     * @param $url_origin
+     *
+     * @return string
+     */
     public static function getShortUrl($url_origin)
     {
 
@@ -178,11 +196,21 @@ class UrlShorneter extends \yii\db\ActiveRecord
 
     }
 
+    /**
+     * @param $url_short
+     *
+     * @return UrlShorneter|null
+     */
     public static function checkShortUrl($url_short)
     {
         return static::findOne(['url_short' => $url_short]);
     }
 
+    /**
+     * @param $url
+     *
+     * @return bool
+     */
     public static function checkOriginUrl($url)
     {
         $ch = curl_init();

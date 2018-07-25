@@ -175,16 +175,20 @@ class UrlShortController extends Controller
     }
 
     /**
-     * @throws \yii\base\InvalidConfigException
+     * @param $code
+     *
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionRedirect($code)
     {
 
         if ($model = UrlShorneter::findOne(['url_short' => $code])) {
             $model->count_of_use++;
-//            var_dump($model);exit;
-            $model->save();
-//            var_dump($model, Url::base(true));exit;
+//            $model->url_short = $code;
+//            var_dump($model->update(true));exit;
+            $model->update(false);
+//            var_dump($model->getDirtyAttributes());exit;
             $this->redirect($model->url_origin);
         } else $this->redirect(Url::base(true));
 

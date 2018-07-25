@@ -41,5 +41,19 @@ class CheckUserAccess
 
     }
 
+    public static function isAdmin()
+    {
+
+        $adminEmail = Yii::$app->params['adminEmail'];
+        $adminId = (int)User::find()->where(
+            ['username' => $adminEmail]
+        )->one()->id;
+
+        $userId = (int)Yii::$app->user->id;
+
+        return $adminId === $userId;
+
+    }
+
 
 }
