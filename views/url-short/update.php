@@ -3,16 +3,16 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\UrlShorneter */
+/* @var $model app\models\UrlShortener */
 
-$this->title = Yii::t('app', 'Update Url Shorneter: ' . $model->id, [
+$this->title = Yii::t('app', 'Update Url Shortener: ' . $model->id, [
     'nameAttribute' => '' . $model->id,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Url Shorneters'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="url-shorneter-update">
+<div class="url-shortener-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

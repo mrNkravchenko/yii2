@@ -22,7 +22,7 @@ use yii\helpers\Url;
  * @property string $created_at
  * @property int $count_of_use
  */
-class UrlShorneter extends \yii\db\ActiveRecord
+class UrlShortener extends \yii\db\ActiveRecord
 {
 
     public const LEVEL_DENIED = 0;
@@ -34,7 +34,7 @@ class UrlShorneter extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'url_shorneter';
+        return 'url_shortener';
     }
 
     /**
@@ -199,7 +199,7 @@ class UrlShorneter extends \yii\db\ActiveRecord
     /**
      * @param $url_short
      *
-     * @return UrlShorneter|null
+     * @return UrlShortener|null
      */
     public static function checkShortUrl($url_short)
     {

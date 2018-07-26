@@ -9,7 +9,7 @@
 namespace app\commands;
 
 
-use app\models\UrlShorneter;
+use app\models\UrlShortener;
 use function date;
 use const PHP_EOL;
 use function strtotime;
@@ -25,7 +25,7 @@ class UrlShortenerController extends Controller
 
     public function actionClean()
     {
-        foreach ((UrlShorneter::find()->each()) as $key => $model)
+        foreach ((UrlShortener::find()->each()) as $key => $model)
         {
 
             if ($model->created_at <= date('Y-m-d H:m:s', strtotime('-15 days'))) {

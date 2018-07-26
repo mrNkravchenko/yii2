@@ -17,10 +17,21 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'language' => 'ru-RU',
+
+    'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\UrlShortener',
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '92W1Zbtr-8f4GjMhp2_hi4BGD68KZC6N',
+
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
+
         ],
         'cache' => [
 //            'class' => 'yii\caching\FileCache',

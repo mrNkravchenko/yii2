@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\UrlShorneter */
+/* @var $model app\models\UrlShortener */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="url-shorneter-form">
+<div class="url-shortener-form">
 
     <?php /*$form = ActiveForm::begin(); */?><!--
 

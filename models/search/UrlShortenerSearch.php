@@ -5,12 +5,12 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\UrlShorneter;
+use app\models\UrlShortener;
 
 /**
- * UrlShortenerSearch represents the model behind the search form of `app\models\UrlShorneter`.
+ * UrlShortenerSearch represents the model behind the search form of `app\models\UrlShortener`.
  */
-class UrlShortenerSearch extends UrlShorneter
+class UrlShortenerSearch extends UrlShortener
 {
     /**
      * {@inheritdoc}
@@ -38,7 +38,7 @@ class UrlShortenerSearch extends UrlShorneter
      */
     public function search($params)
     {
-        $query = UrlShorneter::find();
+        $query = UrlShortener::find();
 
         // add conditions that should always apply here
 

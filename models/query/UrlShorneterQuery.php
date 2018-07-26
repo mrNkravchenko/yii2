@@ -3,9 +3,9 @@
 namespace app\models\query;
 
 /**
- * This is the ActiveQuery class for [[\app\models\UrlShorneter]].
+ * This is the ActiveQuery class for [[\app\models\UrlShortener]].
  *
- * @see \app\models\UrlShorneter
+ * @see \app\models\UrlShortener
  */
 class UrlShorneterQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +16,7 @@ class UrlShorneterQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \app\models\UrlShorneter[]|array
+     * @return \app\models\UrlShortener[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class UrlShorneterQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return \app\models\UrlShorneter|array|null
+     * @return \app\models\UrlShortener|array|null
      */
     public function one($db = null)
     {

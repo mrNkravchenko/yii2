@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\objects\CheckUserAccess;
 use function var_dump;
 use Yii;
-use app\models\UrlShorneter;
+use app\models\UrlShortener;
 use app\models\search\UrlShortenerSearch;
 use yii\filters\AccessControl;
 use yii\helpers\Html;
@@ -15,7 +15,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UrlShortController implements the CRUD actions for UrlShorneter model.
+ * UrlShortController implements the CRUD actions for UrlShortener model.
  */
 class UrlShortController extends Controller
 {
@@ -43,7 +43,7 @@ class UrlShortController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -52,7 +52,7 @@ class UrlShortController extends Controller
     }
 
     /**
-     * Lists all UrlShorneter models.
+     * Lists all UrlShortener models.
      * @return mixed
      */
     public function actionIndex()
@@ -68,7 +68,7 @@ class UrlShortController extends Controller
     }
 
     /**
-     * Displays a single UrlShorneter model.
+     * Displays a single UrlShortener model.
      *
      * @param integer $id
      *
@@ -83,7 +83,7 @@ class UrlShortController extends Controller
     }
 
     /**
-     * Creates a new UrlShorneter model.
+     * Creates a new UrlShortener model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -95,7 +95,7 @@ class UrlShortController extends Controller
 //            return $this->actionLogin();
         }
 
-        $model = new UrlShorneter();
+        $model = new UrlShortener();
         $result = '';
 
         if ($model->load(Yii::$app->request->post())) {
@@ -119,7 +119,7 @@ class UrlShortController extends Controller
     }
 
     /**
-     * Updates an existing UrlShorneter model.
+     * Updates an existing UrlShortener model.
      * If update is successful, the browser will be redirected to the 'view' page.
      *
      * @param integer $id
@@ -150,7 +150,7 @@ class UrlShortController extends Controller
     }
 
     /**
-     * Deletes an existing UrlShorneter model.
+     * Deletes an existing UrlShortener model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      *
      * @param integer $id
@@ -183,7 +183,7 @@ class UrlShortController extends Controller
     public function actionRedirect($code)
     {
 
-        if ($model = UrlShorneter::findOne(['url_short' => $code])) {
+        if ($model = UrlShortener::findOne(['url_short' => $code])) {
             $model->count_of_use++;
 //            $model->url_short = $code;
 //            var_dump($model->update(true));exit;
@@ -195,17 +195,17 @@ class UrlShortController extends Controller
     }
 
     /**
-     * Finds the UrlShorneter model based on its primary key value.
+     * Finds the UrlShortener model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      *
      * @param integer $id
      *
-     * @return UrlShorneter the loaded model
+     * @return UrlShortener the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UrlShorneter::findOne($id)) !== null) {
+        if (($model = UrlShortener::findOne($id)) !== null) {
             return $model;
         }
 

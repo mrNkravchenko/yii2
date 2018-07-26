@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="url-shorneter-search">
+<div class="url-shortener-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

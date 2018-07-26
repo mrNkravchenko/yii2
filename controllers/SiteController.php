@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 
-use app\models\UrlShorneter;
+use app\models\UrlShortener;
 use app\models\User;
 use function var_dump;
 use Yii;

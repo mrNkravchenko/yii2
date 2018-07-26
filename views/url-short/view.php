@@ -5,13 +5,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\UrlShorneter */
+/* @var $model app\models\UrlShortener */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Url Shorneters'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Url Shorteners'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="url-shorneter-view">
+<div class="url-shortener-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
