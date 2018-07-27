@@ -12,7 +12,7 @@ class m180718_184637_create_url_shortener_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('url_shorneter' , [
+        $this->createTable('url_shortener' , [
             'id' => $this->primaryKey(),
             'url_origin' => $this->string()->notNull()->unique(),
             'url_short' => $this->string()->notNull()->unique(),

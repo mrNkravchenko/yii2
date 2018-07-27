@@ -7,7 +7,7 @@ namespace app\models\query;
  *
  * @see \app\models\UrlShortener
  */
-class UrlShorneterQuery extends \yii\db\ActiveQuery
+class UrlShortenerQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {

@@ -69,11 +69,11 @@ class UrlShortener extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return \app\models\query\UrlShorneterQuery the active query used by this AR class.
+     * @return \app\models\query\UrlShortenerQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \app\models\query\UrlShorneterQuery(get_called_class());
+        return new \app\models\query\UrlShortenerQuery(get_called_class());
     }
 
 
@@ -221,9 +221,15 @@ class UrlShortener extends \yii\db\ActiveRecord
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
         curl_exec($ch);
 
         $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        $error = curl_error($ch);
 
         curl_close($ch);
 
