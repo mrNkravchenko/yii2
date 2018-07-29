@@ -106,7 +106,6 @@ class UrlShortController extends Controller
                 $model->refresh();
             } else {
                 $result = '';
-//                var_dump($model);exit;
                 $errors = $model->getErrors('url_origin');
                 foreach ($errors as $key => $error){
                     $result .= $error . ' ';

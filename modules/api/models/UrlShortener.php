@@ -2,7 +2,9 @@
 
 namespace app\modules\api\models;
 
+use function var_dump;
 use Yii;
+use yii\db\ActiveRecordInterface;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -15,7 +17,7 @@ use yii\helpers\Url;
  * @property string $created_at
  * @property int $count_of_use
  */
-class UrlShortener extends \yii\db\ActiveRecord
+class UrlShortener extends \yii\db\ActiveRecord implements ActiveRecordInterface
 {
     /**
      * {@inheritdoc}
@@ -35,6 +37,7 @@ class UrlShortener extends \yii\db\ActiveRecord
             [['created_at'], 'safe'],
             [['count_of_use'], 'integer'],
             [['url_origin', 'url_short'], 'string', 'max' => 255],
+            [['url_origin', 'url_short'], 'safe'],
             [['url_origin'], 'unique'],
             [['url_short'], 'unique'],
         ];
@@ -86,7 +89,7 @@ class UrlShortener extends \yii\db\ActiveRecord
 
                     } else {
                         $this->url_short = '';
-                        $this->addError('url_short', 'Ваш url не прошел валидацию, такой url уже есть, оставьте поле пустым или введите новый короткий url:');
+                        $this->addError('url_short', 'Ваш url не прошел валидацию, такой url уже есть, оставьте поле пустым или введите новый короткий url');
                     }
 
                 }
@@ -113,7 +116,7 @@ class UrlShortener extends \yii\db\ActiveRecord
 
             $this->addError('url_origin', 'Значения для поля: ' . $this::findOne(['url_origin' => $this->url_origin])->url_short . '.');
 
-            $this->addError('url_origin', 'Ваша ссылка: ' . Html::a($link, Url::to($link, true)));
+            $this->addError('url_origin', 'Ваша ссылка: ' . $link);
         }
     }
 
@@ -132,13 +135,12 @@ class UrlShortener extends \yii\db\ActiveRecord
         parent::afterSave($insert, $changedAttributes);
 
 
-
         if (!strlen($this->url_short) >= 4) {
             $this->url_short = $this::generateShortUrl($this->url_origin);
         }
 
 
-        if ($this->isAttributeChanged('count_of_use')){
+        if ($this->isAttributeChanged('count_of_use')) {
             $this->save();
 
         }
@@ -146,7 +148,6 @@ class UrlShortener extends \yii\db\ActiveRecord
         if ($this->isAttributeChanged('url_short')) {
             $this->save();
         }
-
 
 
     }
@@ -224,4 +225,31 @@ class UrlShortener extends \yii\db\ActiveRecord
 
 
     }
+
+    /**
+     * @param array $data
+     * @param null $formName
+     *
+     * @return bool
+     */
+    public function load($data, $formName = null)
+    {
+        if (parent::load($data, $formName)) {
+
+            return parent::load($data, $formName);
+
+        } else {
+            if (isset($data['url_origin']) && !isset($data['url_short'])) {
+
+                $data['url_short'] = '';
+
+            }
+
+            $this->setAttributes($data);
+
+
+            return true;
+        }
+    }
+
 }
