@@ -1,8 +1,74 @@
+<h1>Проект Url Shortener</h1>
+<ol>
+    <li>Приложение генерирует короткий url</li>
+    <li>Имеется возможность записать свой короткий код</li>
+    <li>Использование приложения возможно только зарегестриваронным пользователям</li>
+    <li>Url, который пользователь ввел для "укорачивания" - проверяется и в случае любого ответа, кроме 404 проходит
+        валидацию
+    </li>
+    <li>Url, который пользователь ввел для "укорачивания", а так же желаемый "короткий" Url проверяются на наличие
+        таковых в базе
+    </li>
+    <li>Т.к. приложение использует фреймворк Yii2 и basic шаблон, то конфигурационный фаил лежит в папке config/web.php
+        и congig/params.php
+    </li>
+    <li>Пара короткого и длинного Url удаляются, при условии, что они созданны 15 дней назад (скрипт запускается cron
+        через консольную команду php /path/to/project/root/yii url-shortener/clean)
+    </li>
+    <li>Так же приложение считает колическо переходов по ссылке</li>
+    <li>Приложение имеет API для создания коротких url:
+        <ul>
+            <li>адрес запроса: <code>yourdomain.name/api/v-001-url-short/create</code></li>
+            <li>метод запроса: <code>GET</code></li>
+            <li>обязательные параметры запроса: <code>access-token</code>, <code>url_origin</code></li>
+            <li>дополнительные параметры запроса(опционально): <code>url_short</code></li>
+            <li><b>access-token</b> - уникальный ключ для каждого пользователя, можно посмотреть в личном кабинете
+                пользователя или получить его по почте при регистрации и подтверждения почтового адреса
+            </li>
+            <li><b>url_origin</b> - URL который Вы хотите укоротить</li>
+            <li><b>url_short</b> - желаемый или сгенерированный "короткий" URL</li>
+        </ul>
+        <br/>
+        <p>Пример запроса:</p>
+        <code>
+            https://yourdomain.name/api/v-001-url-short/create?access-token=jFjmoIyNekm8Y6ixhQ_CDkgtfRI0FzmB&url_origin=https://yandex.ru
+        </code>
+        <br>
+        <p>Пример ответа:</p>
+        <code>
+            <pre>
+            {
+            "data":{
+                "id":5,
+                "url_origin":"https://yandex.ru",
+                "url_short":"5yc1n",
+                "created_at":"2018-08-01 22:10:45",
+                "count_of_use":0
+                },
+            "link":"https://childlook.ru/5yc1n"
+            }
+            </pre>
+        </code>
+    
+   </li>
+
+</ol>
+
+<p> В планах: </p>
+
+<ol>
+    <li>Сделать ограничение запросов по времени с одного ip адреса</li>
+    <li>Реализовать возможность восстановления пароля</li>
+</ol>
+
+
+
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
+    <h2 align="center">Yii 2 Basic Project Template</h2>
     <br>
 </p>
 
