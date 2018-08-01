@@ -6,7 +6,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-//    'name' => 'Мои Заметки',
+    'name' => 'My Application',
 
 
     'id' => 'basic',
@@ -34,13 +34,13 @@ $config = [
 
         ],
         'cache' => [
-//            'class' => 'yii\caching\FileCache',
-            'class' => 'yii\redis\Cache',
-            'redis' => [
-                  'hostname' => 'localhost',
-                  'port' => 6379,
-                  'database' => 0,
-            ]
+            'class' => 'yii\caching\FileCache',
+//            'class' => 'yii\redis\Cache',
+//            'redis' => [
+//                  'hostname' => 'localhost',
+//                  'port' => 6379,
+//                  'database' => 0,
+//            ]
         ],
         'user' => [
             'identityClass' => 'app\models\User',
@@ -85,6 +85,7 @@ $config = [
                 'contact' => 'site/contact',
                 'login' => 'site/login',
                 'logout' => 'site/logout',
+                'activation' => 'site/activation',
 
                 '<code:\w+>' => 'url-short/redirect',
 

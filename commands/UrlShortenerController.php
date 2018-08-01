@@ -11,10 +11,7 @@ namespace app\commands;
 
 use app\models\UrlShortener;
 use function date;
-use const PHP_EOL;
 use function strtotime;
-use function time;
-use function var_dump;
 use yii\console\Controller;
 use yii\console\ExitCode;
 

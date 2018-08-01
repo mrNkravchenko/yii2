@@ -5,3 +5,6 @@
 
 # Script will be run each midnight (00 hour 00 minutes every day)
 0 0 * * * php /home/nikita/projects/yii2/yii url-shortener/clean
+
+# Script will be run each hour
+0 * * * * php /home/nikita/projects/yii2/yii user/clean
