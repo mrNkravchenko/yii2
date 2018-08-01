@@ -53,9 +53,9 @@ $config = [
             'class' => 'yii\swiftmailer\Mailer',
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                    'host' => 'ursa.lite-host.in',
-                    'username' => 'no-reply@u1565117062233.u-host.in',
-                    'password' => 'emhtZW55YQ',
+                    'host' => 'host',
+                    'username' => 'username',
+                    'password' => 'password',
                     'port' => '465',
                     'encryption' => 'ssl',
                 ],
