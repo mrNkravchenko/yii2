@@ -2,55 +2,90 @@
 
 namespace app\modules\api\controllers;
 
+use app\modules\api\models\UserIpLimit;
+use function var_dump;
 use Yii;
 use app\modules\api\models\UrlShortener;
-use yii\console\Response;
+use yii\filters\RateLimiter;
+use yii\rest\Controller;
+
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpBearerAuth;
+use yii\filters\auth\QueryParamAuth;
 use yii\helpers\Json;
-use yii\rest\ActiveController;
-use yii\filters\AccessControl;
-use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
-class V001UrlShortController extends ActiveController
+class V001UrlShortController extends /*ActiveController*/ /*Controller*/ Controller
 {
 
     public $modelClass = UrlShortener::class;
 
     public $defaultAction = 'create';
 
+
+
+
+    /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => QueryParamAuth::class,
+        ];
+
+        return $behaviors;
+
+    }
+
+    /**
+     * @return string
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionCreate()
     {
-//        \yii\web\Response::FORMAT_JSON;
 
-//        var_dump($this); exit;
         $model = new UrlShortener();
-        $result = '';
+        $result = null;
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->get())) {
 
             if ($model->save()) {
-                $link = Url::base(true) . '/' . $model->url_short;
-                $result = Html::a($link, Url::to($link, true));
+
+                $result['data'] = $model::findOne(['url_origin' => $model->url_origin]);
+                $result['link'] = Url::base(true) . '/' . $model::findOne(['url_origin' => $model->url_origin])->url_short;
+
                 $model->refresh();
             } else {
-                $result = '';
-//                var_dump($model);exit;
-                $errors = $model->getErrors('url_origin');
-                foreach ($errors as $key => $error){
-                    $result .= $error . ' ';
+
+                if ($result['data'] = $model::findOne(['url_origin' => $model->url_origin])){
+
+                    $result['link'] = Url::base(true) . '/' . $model::findOne(['url_origin' => $model->url_origin])->url_short;
+
                 }
+
+                $errors = $model->getErrors();
+
+                $result['error'] = $errors;
 
             }
         }
 
-        return Json::encode($result);
 
-//        return $this->render('create', ['model' => $model, 'result' => $result]);
+        return $result;
+
     }
 
 
+    /**
+     * @param $id
+     *
+     * @return UrlShortener|null
+     * @throws NotFoundHttpException
+     */
     protected function findModel($id)
     {
         if (($model = UrlShortener::findOne($id)) !== null) {

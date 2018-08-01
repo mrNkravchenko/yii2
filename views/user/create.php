@@ -19,4 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
     ]) ?>
 
+    <?php if ($result !== null):?>
+        <p class="alert alert-success text-center"><?= $result ?></p>
+    <?php endif;?>
+
 </div>

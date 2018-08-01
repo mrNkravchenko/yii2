@@ -31,11 +31,20 @@ return [
     'Save' => 'Отправить',
     'User ID' => 'ID Пользователя',
     'Login Date' => 'Время входа',
-    'Update' => 'Обновить',
+    'Update' => 'Редактировать',
+    'Update User' => 'Редактирование профиля пользователя',
     'Text' => 'Текст',
     'Creator' => 'Автор',
     'Date Create' => 'Дата создания',
     'Delete' => 'Удалить',
+    'Profile' => 'Аккаунт',
+    'My profile' => 'Мой аккаунт',
+    'Url Short' => 'Короткая ссылка',
+    'Url Origin' => 'Прямая ссылка',
+    'Url Shorteners' => 'Короткие ссылки',
+    'Url Shortener' => 'Короткие ссылки',
+    'Create Url Shortener' => 'Создать короткую ссылку',
+    'Generate' => 'Создать',
 
 
 ];

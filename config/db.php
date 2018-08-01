@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=127.0.0.1;dbname=yii2',
-    'username' => 'root',
-    'password' => 'mysql',
+    'dsn' => 'mysql:host=agrokasseta.ru;dbname=agrokass_agroteh',
+    'username' => 'agrokass_agroteh',
+    'password' => 'emhtZW55YQ',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

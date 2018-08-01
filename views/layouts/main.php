@@ -69,14 +69,29 @@ Yii::$app->name = Yii::t('app', 'My Notes');
                 Yii::$app->user->isGuest ? (
                 ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
                 ) : (
-                    '<li>'
-                    . Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        Yii::t('app', 'Logout'). '(' . Yii::$app->user->identity->name . ')',
-                        ['class' => 'btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
+
+                ['label' => Yii::t('app', 'Profile') . ' (' . Yii::$app->user->identity->name . ')',
+
+                    'itemsOptions' => ['class' => 'dropdown-submenu'],
+                    'submenuOptions' => ['class' => 'dropdown-menu'],
+
+                    'items' =>
+                        [
+                            [
+                                'label' => Yii::t('app', 'My profile'),
+                                'url' => Url::to(['user/view', 'id' => Yii::$app->user->identity->id]),
+                                'options' => ['class' => 'text-center']
+                            ],
+
+                            '<li class="text-center">'
+                            . Html::beginForm(['/site/logout'], 'post')
+                            . Html::submitButton(Yii::t('app', 'Logout'), ['class' => 'btn btn-link logout'])
+                            . Html::endForm() .
+                            '</li>'
+                        ],
+
+
+                ]
                 )
             ]]
     );
@@ -95,8 +110,11 @@ Yii::$app->name = Yii::t('app', 'My Notes');
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <!--<p class="text-center small">
+            <?/*= Html::a(Yii::t('app/site', 'Privacy Policy'), ['/site/about']) */?>
+        </p>-->
+        <p class="pull-right small"><?= Yii::powered() ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

@@ -36,9 +36,9 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
 
-    <?= $form->field($model, 'url_origin')->input('url') ?>
+    <?= $form->field($model, 'url_origin')->input('url' , ['placeholder' => 'http://example.com']) ?>
 
-    <?= $form->field($model, 'url_short')->textInput() ?>
+    <?= $form->field($model, 'url_short')->textInput(['placeholder' => 'abcde']) ?>
 
 
     <div class="form-group">

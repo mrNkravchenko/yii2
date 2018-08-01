@@ -61,9 +61,11 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
-        if (CheckUserAccess::isAdmin()){
+        $model = $this->findModel($id);
+
+        if (CheckUserAccess::isAdmin() || $model->id === Yii::$app->user->id){
             return $this->render('view', [
-                'model' => $this->findModel($id),
+                'model' => $model,
             ]);
 
         } else return $this->goHome();
@@ -73,16 +75,13 @@ class UserController extends Controller
 
     /**
      * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
         $model = new User();
 
-        /*if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }*/
+        $result = null;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
@@ -90,23 +89,23 @@ class UserController extends Controller
 
             if ($model->save()){
                 $model->sendActivationToEmail();
-                Yii::$app->response->refresh(); //очистка данных из формы
-                echo "<p style='color:green'>На Ваш e-mail отправлено письмо со ссылкой.<br><br>"
-                    . "Перейдите по ней для активации подписки!</p>";
-                exit;
-            } else echo "<p style='color:red'>". Yii::t('app/site', 'Your registration is not completed, an error occurred') . "</p>";
+
+
+//                Yii::$app->response->refresh(); //очистка данных из формы
+                $result = 'Письмо с данными активации успешно отправлено на ваш email адрес, для дальнейщенй регистрации перейдите по ссылке в письме';
+
+            } else $model->addError('email', Yii::t('app/site', 'Your registration is not completed, an error occurred'));
         } else {
 
             //Проверяем наличие фразы в массиве ошибки
             if( isset($model->errors['email']) && strpos($model->errors['email'][0], 'уже занято') !== false) {
-                echo "<p style='color:red'>" . Yii::t('app/site', 'You already have an account!') . "</p>";
+                $model->addError('email', Yii::t('app/site', 'You already have an account!'));
             }
         }
-//        return $this->redirect(['view', 'id' => $model->id]);
-
 
         return $this->render('create', [
             'model' => $model,
+            'result' => $result,
         ]);
     }
 

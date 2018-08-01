@@ -4,7 +4,10 @@ namespace app\models;
 
 use Yii;
 
+use yii\filters\RateLimitInterface;
+use yii\helpers\Json;
 use yii\helpers\Url;
+use yii\swiftmailer\Mailer;
 
 /**
  * This is the model class for table "user".
@@ -59,7 +62,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'password' => Yii::t('app', 'Your password'),
             'salt' => 'Salt',
             'access_token' => 'Access Token',
-            'create_date' => 'Create Date',
+            'create_date' => Yii::t('app', 'Date Create'),
             'confirm' => 'Confirm Registration Status',
         ];
     }
@@ -72,8 +75,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+
+            if($this->isAttributeChanged('confirm')){
+                return true;
+            }
+
             if ($this->getIsNewRecord() && !empty($this->password)) {
                 $this->salt = $this->saltGenerator();
+
             }
             if (!empty($this->password)) {
 
@@ -196,52 +205,59 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
 
 
+    /**
+     *
+     */
     public function sendActivationToEmail()
     {
-//        TODO Пееделать используя встроенный шаблон
-        /*$email = Html::encode($this->username);
-        $this->username = $email;*/
-        $this->create_date = (string) date('Y-m-d');
-
         $absoluteHomeUrl = Url::home(true); //http://ваш сайт
         $serverName = Yii::$app->request->serverName; //ваш сайт без http
         $url = $absoluteHomeUrl.'activation?access_token='.$this->access_token;
 
-        $msg = "Здравствуйте! Спасибо за оформление личного кабинета на сайте $serverName!  Вам осталось только подтвердить свой e-mail. Для этого перейдите по ссылке $url";
+        /*if ($link = UrlShortener::getApiResponse($absoluteHomeUrl . 'api/v-001-url-short/create?access-token='. $this->access_token . '&url_origin='. $url)) {
+            $url = Json::decode($link)['link'];
+        }*/
 
-        $msg_html  = "<html><body style='font-family:Arial,sans-serif;'>";
-        $msg_html .= "<h2 style='font-weight:bold;border-bottom:1px dotted #ccc;'>Здравствуйте! Спасибо за оформление подписки на сайте <a href='". $absoluteHomeUrl ."'>$serverName</a></h2>\r\n";
+        $msg = "Здравствуйте! Спасибо за регистрацию на сайте $serverName!  Вам осталось только подтвердить свой e-mail. Для этого перейдите по ссылке $url";
+
+
+        $msg_html = "<h2 style='font-weight:bold;border-bottom:1px dotted #ccc;'>Здравствуйте! Спасибо за регистрацию на сайте <a href='{$absoluteHomeUrl}'>$serverName</a></h2>\r\n";
         $msg_html .= "<p><strong>Вам осталось только подтвердить свой e-mail.</strong></p>\r\n";
-        $msg_html .= "<p><strong>Для этого перейдите по ссылке </strong><a href='". $url."'>$url</a></p>\r\n";
-        $msg_html .= "</body></html>";
+        $msg_html .= "<p><strong>Для этого перейдите по </strong><a href='{$url}'>ссылке</a></p>\r\n";
 
-        Yii::$app->mailer->compose()
-            ->setFrom('no-reply@u1565117062233.u-host.in') //не надо указывать если указано в common\config\main-local.php
-            ->setTo($this->username) // кому отправляем - реальный адрес куда придёт письмо формата asdf @asdf.com
-            ->setSubject('Подтверждение подписки.') // тема письма
-            ->setTextBody($msg) // текст письма без HTML
-            ->setHtmlBody($msg_html) // текст письма с HTML
+        Yii::$app->mailer->compose('layouts/html')
+            ->setFrom('no-reply@u1565117062233.u-host.in')
+            ->setTo($this->username)
+            ->setSubject('Подтверждение подписки.')
+            ->setTextBody($msg)
+            ->setHtmlBody($msg_html)
             ->send();
 
     }
 
-    //Удаление подписчиков, которые не подтвердили свой e-mail в течении 7-и дней.
-//    TODO переделать используя контроллер консоли
-    public function deleteUsersWithoutActivation(){
-        $today = time();
-        $old_time = $today - (86400*7);
+    /**
+     *
+     */
+    public function sendInfoEmailToUser()
+    {
+        $absoluteHomeUrl = Url::home(true);
+        $serverName = Yii::$app->request->serverName;
 
-        $oldSub = self::find()
-            ->where(['confirm' => '0'])
-            ->andWhere(['<','created_date', $old_time])
-            ->all();
+        $msg_html = "<h2 style='font-weight:bold;border-bottom:1px dotted #ccc;'>Здравствуйте, {$this->name}! Спасибо за регистрацию на сайте <a href='". $absoluteHomeUrl ."'>$serverName</a></h2>\r\n";
+        $msg_html .= "<p>Пожалуйста сохраните это письмо, с информацией о Вашей учетной записи:</p>\r\n";
+        $msg_html .= "<p><strong>Ваш логин: <span style='color: greenyellow'>{$this->username}</span></strong></p>\r\n";
+        $msg_html .= "<p><strong>Индивидуальный токен для доступа к API и для восстановления пароля: <span style='color: red'>{$this->access_token}</span></strong></p>\r\n";
+        $msg_html .= "<p>данное письмо сформированно автоматически, не нужно на него отвечать</p>\r\n";
 
-        foreach($oldSub as $sub){
-            try {
-                $sub->delete();
-            } catch (\Exception $exception) {
-                Yii::warning($exception. Yii::t('app', 'Mistake'));
-            }
-        }
+
+
+        Yii::$app->mailer->compose('layouts/html')
+            ->setFrom('no-reply@u1565117062233.u-host.in')
+            ->setTo($this->username)
+            ->setSubject('Регистрационная информация')
+            ->setHtmlBody($msg_html)
+            ->send();
+
     }
+
 }

@@ -74,8 +74,12 @@ class LoginForm extends Model
             $result = Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
 
             if ($result) {
+
                 $log = new UserLog();
                 $log->user_id = Yii::$app->user->getId();
+                if (User::findOne(['id' => $log->user_id])->confirm === 0) {
+
+                }
                 if ($log->save()) {
                     return $result;
                 }

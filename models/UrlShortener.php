@@ -86,6 +86,8 @@ class UrlShortener extends \yii\db\ActiveRecord
 
             $this->url_origin = trim($this->url_origin);
 
+
+
 //            проверяем валидацию введенного url
             if ($this::checkOriginUrl($this->url_origin)) {
 
@@ -225,7 +227,7 @@ class UrlShortener extends \yii\db\ActiveRecord
 
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-        curl_exec($ch);
+        $result = curl_exec($ch);
 
         $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -235,6 +237,27 @@ class UrlShortener extends \yii\db\ActiveRecord
 
         return (!empty($response) && $response != 404);
 
+    }
 
+    public static function getApiResponse($url) {
+
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+
+        $result = curl_exec($ch);
+
+        $response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        $error = curl_error($ch);
+
+        curl_close($ch);
+
+        return $result;
     }
 }
